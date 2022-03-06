@@ -1,4 +1,4 @@
-.overlay {
+.app-bar {
 }
 
 .header {
@@ -37,6 +37,8 @@
 
 .content {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   width: 100%;
+  padding: 5px 20px;
 }
