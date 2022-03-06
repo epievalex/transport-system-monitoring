@@ -2,7 +2,7 @@ import { Courier, Order } from "common/models";
 
 export const orders: Order[] = [
   {
-    id: 1904040,
+    id: "1904040",
     statusCode: "1",
     date: "02-01-2022",
     courier: { id: "1", fullName: "Диана Арсеньева" },

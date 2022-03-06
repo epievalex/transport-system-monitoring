@@ -36,7 +36,7 @@ const OrderDetails: React.FC<Props> = ({ type, order, getOrderDetails, couriers 
 
   useEffect(() => {
     if (orderId) {
-      getOrderDetails({ orderId: +orderId });
+      getOrderDetails({ orderId });
     }
   }, [orderId, getOrderDetails]);
 
@@ -114,14 +114,6 @@ const OrderDetails: React.FC<Props> = ({ type, order, getOrderDetails, couriers 
             renderInput={(params) => <TextField className={styles["input"]} {...params} error={false} />}
           />
         </LocalizationProvider>
-
-        {/* <TextField
-          className={styles["input"]}
-          label="Дата"
-          name="date"
-          value={values.date}
-          onChange={(e) => changeFormField({ date: e.currentTarget.value })}
-        /> */}
 
         <TextField
           className={styles["input"]}

@@ -1,1 +1,2 @@
-export { CreateOrder } from "./CreateOrder";
+import CreateOrder from "./CreateOrder";
+export { CreateOrder };

@@ -1,4 +1,4 @@
-import { Order } from "common/models";
+import { Order, OrderForm } from "common/models";
 
 export type OrdersState = {
   items: Order[];
@@ -11,12 +11,16 @@ export interface CreateOrderAction {
 }
 
 export interface GetOrderDetails {
-  orderId: number;
+  orderId: string;
 }
 
 export interface GetOrderDetailsAction {
   type: "@orders/GET_ORDER_DETAILS";
   payload: Order | undefined;
+}
+
+export interface CreateOrder {
+  orderForm: OrderForm;
 }
 
 export type OrdersAction = CreateOrderAction | GetOrderDetailsAction;

@@ -1,6 +1,6 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
-import { Link } from "@mui/material";
+import { NavLink, useLocation } from "react-router-dom";
+import classnames from "classnames";
 
 import { links } from "common/data/app-bar";
 import logo from "common/icons/logo.png";
@@ -21,9 +21,14 @@ const AppBar = () => {
         </div>
         <div className={styles["content"]}>
           {links.map((item) => (
-            <Link href={item.route} variant="overline" underline="none">
+            <NavLink
+              key={item.label}
+              to={item.route}
+              end
+              className={({ isActive }) => (isActive ? classnames(styles.link, styles["link--active"]) : styles.link)}
+            >
               {item.label}
-            </Link>
+            </NavLink>
           ))}
         </div>
       </div>

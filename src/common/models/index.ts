@@ -1,5 +1,5 @@
 export interface Order {
-  id: number;
+  id: string;
   statusCode: string;
   date: string;
   courier: Courier | null;

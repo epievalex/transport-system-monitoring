@@ -18,8 +18,8 @@ interface Props extends PropsFromRedux {}
 
 const OrdersList: React.FC<Props> = ({ items }) => {
   const navigate = useNavigate();
-  const onRowClick = (orderId: number) => {
-    navigate(`${orderId}`);
+  const onRowClick = (orderId: string) => {
+    navigate(orderId);
   };
 
   const gridTable = (

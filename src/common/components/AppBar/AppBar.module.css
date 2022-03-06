@@ -42,3 +42,19 @@
   width: 100%;
   padding: 5px 20px;
 }
+
+.link {
+  margin: 0;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 2.66;
+  letter-spacing: 0.08333em;
+  text-transform: uppercase;
+  color: #1976d2;
+  text-decoration: none;
+}
+
+.link--active {
+  color: #0d47a1;
+}

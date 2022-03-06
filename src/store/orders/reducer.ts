@@ -14,6 +14,12 @@ export const reducer: Reducer<OrdersState, OrdersAction> = (state = initialState
         selectedOrder: action.payload,
       };
 
+    case "@orders/CREATE_ORDER_ACTION":
+      return {
+        ...state,
+        items: [...state.items, action.payload],
+      };
+
     default:
       return state;
   }
