@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import classnames from "classnames";
 
-import { links } from "common/data/app-bar";
+import { links } from "common/data/appBar";
 import logo from "common/icons/logo.png";
 
 import styles from "./AppBar.module.css";

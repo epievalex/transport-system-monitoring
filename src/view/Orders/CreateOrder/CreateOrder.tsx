@@ -23,10 +23,11 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 interface Props extends PropsFromRedux {}
 
-const CreateOrder: React.FC<Props> = ({ createOrder }) => {
+const CreateOrder: React.FC<Props> = ({ createOrder, cars }) => {
   const navigate = useNavigate();
   const [values, setValues] = useState<OrderForm>(initialValues);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSearchingForCourier, setIsSearchingForCourier] = useState(false);
   const [isCourierFound, setIsCourierFound] = useState(false);
   const [areValuesChanged, setAreValuesChanged] = useState(false);
   function changeFormField<K extends keyof typeof values>(data: Pick<typeof values, K>) {
@@ -40,9 +41,11 @@ const CreateOrder: React.FC<Props> = ({ createOrder }) => {
   const submit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setIsSearchingForCourier(true);
     await createOrder({ orderForm: values }, () => {
       setTimeout(() => {
-        setIsCourierFound(true);
+        setIsSearchingForCourier(false);
+        cars.filter((car) => car.statusCode === "3").length ? setIsCourierFound(true) : setIsCourierFound(false);
       }, 10000);
       setTimeout(() => {
         setIsLoading(false);
@@ -57,9 +60,11 @@ const CreateOrder: React.FC<Props> = ({ createOrder }) => {
         <Overlay>
           <div className={styles["loading-screen"]}>
             <CircularProgress size={100} color="primary" />
-            {!isCourierFound
+            {isSearchingForCourier
               ? "Идет поиск подходяего курьера. Пожалуйста, подождите..."
-              : "Курьер найден, через несколько секунд Вы будете возвращены на страницу заказов"}
+              : isCourierFound
+              ? "Курьер найден, через несколько секунд Вы будете возвращены на страницу заказов"
+              : "Заказ создан, но свободный курьер не найден, через несколько секунд Вы будете возвращены на страницу заказов"}
           </div>
         </Overlay>
       )}
@@ -136,6 +141,7 @@ const CreateOrder: React.FC<Props> = ({ createOrder }) => {
 function mapStateToProps(state: RootState) {
   return {
     couriers: state.couriers.items,
+    cars: state.carPark.items,
   };
 }
 

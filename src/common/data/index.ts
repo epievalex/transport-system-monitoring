@@ -38,6 +38,7 @@ export const statusDictionary = {
 };
 
 export const couriers: Courier[] = [
+  { id: "-1", fullName: "Не назначен" },
   { id: "1", fullName: "Диана Арсеньева" },
   { id: "2", fullName: "Александр Эпиев" },
   { id: "3", fullName: "Рыженко Джесс" },

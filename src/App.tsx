@@ -2,7 +2,8 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import { AppBar } from "common/components/AppBar";
-import Orders from "view/Orders";
+import { Orders } from "view/Orders";
+import { CarPark } from "view/CarPark";
 
 import styles from "./App.module.css";
 import "./index.css";
@@ -15,6 +16,7 @@ function App() {
         <main className={styles.main}>
           <Routes>
             <Route path="/*" element={<Orders />} />
+            <Route path="/car-park" element={<CarPark />} />
             <Route path="/" element={<Navigate to="/orders" />} />
           </Routes>
         </main>

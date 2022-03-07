@@ -5,7 +5,7 @@ import { CreateOrder } from "./CreateOrder";
 import { OrderDetails } from "./OrderDetails";
 import { ORDERS_INDEX, ORDER_CREATE, ORDER_DETAILS } from "routes/orders";
 
-export const Orders: React.FC = () => {
+const Orders: React.FC = () => {
   return (
     <Routes>
       <Route path={ORDERS_INDEX} element={<OrdersList />} />
@@ -14,3 +14,5 @@ export const Orders: React.FC = () => {
     </Routes>
   );
 };
+
+export default Orders;

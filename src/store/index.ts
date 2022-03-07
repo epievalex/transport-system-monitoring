@@ -4,8 +4,9 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import { reducer as ordersReducer } from "./orders";
 import { reducer as courierReducer } from "./couriers";
+import { reducer as carParkReducer } from "./carPark";
 
-const rootReducer = combineReducers({ orders: ordersReducer, couriers: courierReducer });
+const rootReducer = combineReducers({ orders: ordersReducer, couriers: courierReducer, carPark: carParkReducer });
 
 const middlewares = [thunk];
 

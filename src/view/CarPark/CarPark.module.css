@@ -1,0 +1,44 @@
+.car-park {
+  /* background: rgba(0, 0, 255, 0.123); */
+  flex-grow: 1;
+  display: flex;
+}
+
+.table {
+  display: grid;
+  grid-auto-rows: 40px;
+  flex-grow: 1;
+  font-size: 0.7rem;
+  min-width: 820px;
+  padding-right: 20px;
+}
+
+.map {
+  width: 400px;
+  height: 100%;
+  border: 3px solid #e0e0e0;
+}
+
+.map-gif {
+  width: 100%;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.row:nth-child(2n) {
+  background: #e3f2fd;
+}
+
+.cell {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.column {
+}

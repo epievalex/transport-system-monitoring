@@ -17,6 +17,7 @@ export interface OrderForm {
 }
 
 export interface Car {
+  id: string;
   courierId: string;
   statusCode: string;
   brand: string;
