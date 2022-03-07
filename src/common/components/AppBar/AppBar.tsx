@@ -17,7 +17,7 @@ const AppBar = () => {
       <div className={styles["sidebar"]}>
         <div className={styles["sidebar-header"]}>
           <img className={styles["logo"]} src={logo} alt="logo" />
-          Система мониторинга транспорта
+          Курьерская служба доставки
         </div>
         <div className={styles["content"]}>
           {links.map((item) => (

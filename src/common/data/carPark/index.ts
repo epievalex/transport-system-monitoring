@@ -5,7 +5,7 @@ export const columns = ["Курьер", "Статус", "Автомобиль", 
 export const carPark: Car[] = [
   {
     id: "1232133",
-    courier: { id: "1", fullName: "Диана Арсеньева" },
+    courier: { id: "1", fullName: "Петров Андрей" },
     statusCode: "1",
     brand: "Skoda Octavia",
     fuel: { value: "150", unit: "ltr" },
@@ -20,7 +20,7 @@ export const carPark: Car[] = [
   },
   {
     id: "123213",
-    courier: { id: "2", fullName: "Александр Эпиев" },
+    courier: { id: "2", fullName: "Степанов Григорий" },
     statusCode: "3",
     brand: "Lada Vesta",
     fuel: { value: "100", unit: "ltr" },
@@ -35,7 +35,7 @@ export const carPark: Car[] = [
   },
   {
     id: "123215",
-    courier: { id: "3", fullName: "Рыженко Джесс" },
+    courier: { id: "3", fullName: "Смирнов Анатолий" },
     statusCode: "3",
     brand: "Lada 2104",
     fuel: { value: "77", unit: "ltr" },

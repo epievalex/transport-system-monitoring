@@ -24,12 +24,18 @@ export const getOrderDetails =
 
 export const createOrder =
   (data: CreateOrder, callback?: () => void) =>
-  async (dispatch: Dispatch<CreateOrderAction>): Promise<void> => {
+  async (dispatch: Dispatch<CreateOrderAction | UpdateCarInfoAction>, getState: () => RootState): Promise<void> => {
+    const availableCourier = getState().carPark.items.filter((item) => item.statusCode === "3")[0]?.courier;
+    const availableCar = availableCourier
+      ? (getState().carPark.items.find((item) => availableCourier?.id === item.courier?.id) as Car)
+      : null;
     const newOrder = {
-      id: uuidv4(),
-      statusCode: "1",
       ...data.orderForm,
+      id: uuidv4(),
+      courier: availableCourier,
+      statusCode: "1",
     };
+    availableCar && dispatch({ type: "@carPark/UPDATE_CAR_INFO", payload: { ...availableCar, statusCode: "1" } });
 
     dispatch({
       type: "@orders/CREATE_ORDER_ACTION",

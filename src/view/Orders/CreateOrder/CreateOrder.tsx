@@ -61,7 +61,7 @@ const CreateOrder: React.FC<Props> = ({ createOrder, cars }) => {
           <div className={styles["loading-screen"]}>
             <CircularProgress size={100} color="primary" />
             {isSearchingForCourier
-              ? "Идет поиск подходяего курьера. Пожалуйста, подождите..."
+              ? "Идет поиск сводобного курьера. Пожалуйста, подождите..."
               : isCourierFound
               ? "Курьер найден, через несколько секунд Вы будете возвращены на страницу заказов"
               : "Заказ создан, но свободный курьер не найден, через несколько секунд Вы будете возвращены на страницу заказов"}
@@ -102,7 +102,7 @@ const CreateOrder: React.FC<Props> = ({ createOrder, cars }) => {
 
         <TextField
           className={styles["input"]}
-          label="Контакс получателя"
+          label="Контакт получателя"
           name="recipient-contact"
           value={values.recipient.contact}
           onChange={(e) => changeFormField({ recipient: { ...values.recipient, contact: e.currentTarget.value } })}

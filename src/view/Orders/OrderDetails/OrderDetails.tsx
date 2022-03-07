@@ -89,7 +89,7 @@ const OrderDetails: React.FC<Props> = ({ order, getOrderDetails, updateOrder, co
 
         <TextField
           className={styles["input"]}
-          label="Контакс получателя"
+          label="Контакт получателя"
           name="recipient-contact"
           value={values.recipient.contact}
           onChange={(e) => changeFormField({ recipient: { ...values.recipient, contact: e.currentTarget.value } })}
