@@ -8,6 +8,18 @@
   padding-bottom: 20px;
 }
 
+.link {
+  margin: 0;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 2.66;
+  letter-spacing: 0.08333em;
+  text-transform: uppercase;
+  color: #1976d2;
+  text-decoration: none;
+}
+
 .grid-table {
   display: grid;
   font-size: 0.8rem;
@@ -19,6 +31,7 @@
 .table-row {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
+  grid-auto-rows: minmax(30px, auto);
   border-bottom: 1px solid grey;
   cursor: pointer;
 }

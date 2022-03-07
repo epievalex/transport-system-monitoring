@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { RootState } from "store";
 import { Order } from "common/models";
@@ -9,6 +9,7 @@ import styles from "./OrdersList.module.css";
 
 import { statusCodes } from "common/data/orders/statuses";
 import { columns } from "./data";
+import { ORDER_CREATE } from "routes/orders";
 
 interface PropsFromRedux {
   items: Order[];
@@ -64,7 +65,16 @@ const OrdersList: React.FC<Props> = ({ items }) => {
     </div>
   );
 
-  return <div className={styles["orders-list"]}>{gridTable}</div>;
+  return (
+    <div className={styles["orders-list"]}>
+      <div className={styles.header}>
+        <Link to={ORDER_CREATE} className={styles.link}>
+          Создать новый заказ
+        </Link>
+      </div>
+      {gridTable}
+    </div>
+  );
 };
 
 function mapStateToProps(state: RootState) {
