@@ -10,7 +10,7 @@ const Orders: React.FC = () => {
     <Routes>
       <Route path={ORDERS_INDEX} element={<OrdersList />} />
       <Route path={ORDER_CREATE} element={<CreateOrder />} />
-      <Route path={ORDER_DETAILS} element={<OrderDetails type="change" />} />
+      <Route path={ORDER_DETAILS} element={<OrderDetails />} />
     </Routes>
   );
 };

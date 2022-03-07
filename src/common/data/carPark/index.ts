@@ -5,8 +5,8 @@ export const columns = ["Курьер", "Статус", "Автомобиль", 
 export const carPark: Car[] = [
   {
     id: "1232133",
-    courierId: "1",
-    statusCode: "2",
+    courier: { id: "1", fullName: "Диана Арсеньева" },
+    statusCode: "1",
     brand: "Skoda Octavia",
     fuel: { value: "150", unit: "ltr" },
     stateNumber: "A256KC",
@@ -15,6 +15,36 @@ export const carPark: Car[] = [
       geo: {
         latitude: "55.666228",
         longitude: " 37.570734",
+      },
+    },
+  },
+  {
+    id: "123213",
+    courier: { id: "2", fullName: "Александр Эпиев" },
+    statusCode: "3",
+    brand: "Lada Vesta",
+    fuel: { value: "100", unit: "ltr" },
+    stateNumber: "O311HF",
+    location: {
+      name: "ул. Вавиловых 10к1",
+      geo: {
+        latitude: "55.666224",
+        longitude: " 37.570731",
+      },
+    },
+  },
+  {
+    id: "123215",
+    courier: { id: "3", fullName: "Рыженко Джесс" },
+    statusCode: "3",
+    brand: "Lada 2104",
+    fuel: { value: "77", unit: "ltr" },
+    stateNumber: "A456OF",
+    location: {
+      name: "ул. Молодежная 35",
+      geo: {
+        latitude: "55.666227",
+        longitude: " 37.570738",
       },
     },
   },

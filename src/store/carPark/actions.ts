@@ -1,13 +1,12 @@
 import { Dispatch } from "redux";
+import { RootState } from "store";
 import { UpdateCarInfo, UpdateCarInfoAction } from "./models";
 
 export const updateCarInfo =
   (data: UpdateCarInfo) =>
-  async (dispatch: Dispatch<UpdateCarInfoAction>, ...props: any[]): Promise<void> => {
-    console.log(props, "props");
-    // const order = orders.find((item) => item.id === data.orderId);
-    // dispatch({
-    //   type: "@orders/GET_ORDER_DETAILS",
-    //   payload: order,
-    // });
+  async (dispatch: Dispatch<UpdateCarInfoAction>, getState: () => RootState): Promise<void> => {
+    dispatch({
+      type: "@carPark/UPDATE_CAR_INFO",
+      payload: data.updatedCar,
+    });
   };

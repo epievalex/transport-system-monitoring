@@ -20,6 +20,12 @@ export const reducer: Reducer<OrdersState, OrdersAction> = (state = initialState
         items: [...state.items, action.payload],
       };
 
+    case "@orders/UPDATE_ORDER":
+      return {
+        ...state,
+        items: action.payload,
+      };
+
     default:
       return state;
   }

@@ -10,7 +10,7 @@ import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@m
 import DatePicker from "@mui/lab/DatePicker";
 import { initialValues } from "common/data/orders/form";
 import styles from "./OrderForm.module.css";
-import { Courier, OrderForm } from "common/models";
+import { Courier, Order, OrderForm } from "common/models";
 import { executeGeocoding } from "common/data/orders/geo";
 import { format } from "date-fns";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -20,19 +20,19 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-interface Props extends PropsFromRedux {
-  type: "create" | "change";
-}
+interface Props extends PropsFromRedux {}
 
-const OrderDetails: React.FC<Props> = ({ type, order, getOrderDetails, couriers }) => {
+const OrderDetails: React.FC<Props> = ({ order, getOrderDetails, updateOrder, couriers, cars }) => {
   const navigate = useNavigate();
   const params = useParams();
   const orderId = params.orderId;
-  const [values, setValues] = useState<OrderForm>(initialValues);
+  const [values, setValues] = useState<Order>({ id: "-1", statusCode: "-1", ...initialValues });
   const [areValuesChanged, setAreValuesChanged] = useState(false);
   function changeFormField<K extends keyof typeof values>(data: Pick<typeof values, K>) {
     setValues({ ...values, ...data });
   }
+
+  console.log(order, "order");
 
   useEffect(() => {
     if (orderId) {
@@ -45,28 +45,17 @@ const OrderDetails: React.FC<Props> = ({ type, order, getOrderDetails, couriers 
   }, [order]);
 
   useEffect(() => {
-    switch (type) {
-      case "change":
-        if (order) setAreValuesChanged(!_.isEqual(order, values));
-        break;
+    setAreValuesChanged(!_.isEqual(order, values));
+  }, [order, values]);
 
-      case "create":
-        setAreValuesChanged(!_.isEqual(initialValues, values));
-        break;
-
-      default:
-        break;
-    }
-  }, [order, type, values]);
-
-  const sumbit = (e: FormEvent) => {
+  const submit = (e: FormEvent) => {
     e.preventDefault();
-    console.log("SEND");
+    updateOrder({ updatedOrdered: values }, () => navigate("/orders"));
   };
 
   return (
-    <form className={styles["form"]} onSubmit={sumbit}>
-      <h3 className={styles["header"]}>{type === "create" ? "Создание нового заказа" : `Заказ №${order?.id}`}</h3>
+    <form className={styles["form"]} onSubmit={submit}>
+      <h3 className={styles["header"]}>{`Заказ №${order?.id}`}</h3>
 
       <div className={styles["text-fields"]}>
         <TextField
@@ -123,28 +112,29 @@ const OrderDetails: React.FC<Props> = ({ type, order, getOrderDetails, couriers 
           onChange={(e) => changeFormField({ cargo: e.currentTarget.value })}
         />
 
-        {type === "change" && (
-          <FormControl fullWidth>
-            <InputLabel id="courier">Курьер</InputLabel>
-            <Select
-              labelId="courier"
-              id="courier-select"
-              value={values.courier?.id || ""}
-              label="Age"
-              onChange={(e) =>
-                changeFormField({ courier: couriers.find((item) => e.target.value === item.id) as Courier })
-              }
-            >
-              {couriers.map((courier) => {
-                return (
-                  <MenuItem key={courier.id} value={courier.id}>
-                    {courier.fullName}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-          </FormControl>
-        )}
+        <FormControl fullWidth>
+          <InputLabel id="courier">Курьер</InputLabel>
+          <Select
+            labelId="courier"
+            id="courier-select"
+            value={values.courier?.id || ""}
+            label="Age"
+            onChange={(e) =>
+              changeFormField({ courier: couriers.find((item) => e.target.value === item.id) as Courier })
+            }
+          >
+            {cars.map((car) => {
+              return (
+                <MenuItem disabled={car.statusCode !== "3"} key={car.id} value={car.courier?.id}>
+                  <div className={styles["menu-item"]}>
+                    {car.courier?.fullName}
+                    {car.statusCode !== "3" && <span className={styles.annotation}>(Запланирован или занят)</span>}
+                  </div>
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
       </div>
 
       <div className={styles["footer"]}>
@@ -152,7 +142,7 @@ const OrderDetails: React.FC<Props> = ({ type, order, getOrderDetails, couriers 
           Отмена
         </Button>
         <Button variant="outlined" type="submit" disabled={!areValuesChanged}>
-          {type === "change" ? "Изменить" : "Создать"}
+          Изменить
         </Button>
       </div>
     </form>
@@ -163,6 +153,7 @@ function mapStateToProps(state: RootState) {
   return {
     order: state.orders.selectedOrder,
     couriers: state.couriers.items,
+    cars: state.carPark.items,
   };
 }
 

@@ -23,4 +23,13 @@ export interface CreateOrder {
   orderForm: OrderForm;
 }
 
-export type OrdersAction = CreateOrderAction | GetOrderDetailsAction;
+export interface UpdateOrder {
+  updatedOrdered: Order;
+}
+
+export interface UpdateOrderAction {
+  type: "@orders/UPDATE_ORDER";
+  payload: Order[];
+}
+
+export type OrdersAction = CreateOrderAction | GetOrderDetailsAction | UpdateOrderAction;

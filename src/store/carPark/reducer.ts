@@ -11,7 +11,7 @@ export const reducer: Reducer<CarParkState, CarParkAction> = (state = initialSta
     case "@carPark/UPDATE_CAR_INFO":
       return {
         ...state,
-        items: action.payload,
+        items: state.items.map((car) => (car.id === action.payload.id ? action.payload : car)),
       };
 
     default:

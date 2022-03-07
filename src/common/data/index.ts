@@ -30,13 +30,6 @@ export const orders: Order[] = [
   },
 ];
 
-export const statusDictionary = {
-  "1": "В обработке",
-  "2": "Принят",
-  "3": "В процессе",
-  "4": "Завершен",
-};
-
 export const couriers: Courier[] = [
   { id: "-1", fullName: "Не назначен" },
   { id: "1", fullName: "Диана Арсеньева" },

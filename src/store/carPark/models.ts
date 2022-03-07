@@ -10,7 +10,7 @@ export interface UpdateCarInfo {
 
 export interface UpdateCarInfoAction {
   type: "@carPark/UPDATE_CAR_INFO";
-  payload: Car[];
+  payload: Car;
 }
 
 export type CarParkAction = UpdateCarInfoAction;

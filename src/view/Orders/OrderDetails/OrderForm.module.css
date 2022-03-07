@@ -32,3 +32,12 @@
 .input {
   width: 100%;
 }
+
+.annotation {
+  font-size: 0.6rem;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+}

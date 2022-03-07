@@ -7,7 +7,7 @@ import { Order } from "common/models";
 
 import styles from "./OrdersList.module.css";
 
-import { statusDictionary } from "common/data";
+import { statusCodes } from "common/data/orders/statuses";
 import { columns } from "./data";
 
 interface PropsFromRedux {
@@ -34,7 +34,7 @@ const OrdersList: React.FC<Props> = ({ items }) => {
           <React.Fragment>
             <div className={styles["table-row"]} key={item.id} onClick={() => onRowClick(item.id)}>
               <div className={styles["table-cell"]}>
-                <span>{statusDictionary[item.statusCode as keyof typeof statusDictionary]}</span>
+                <span>{statusCodes[item.statusCode as keyof typeof statusCodes]}</span>
               </div>
               <div className={styles["table-cell"]}>
                 <span>{item.date}</span>
