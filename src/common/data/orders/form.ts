@@ -1,7 +1,7 @@
 import { OrderForm } from "common/models";
 
 export const initialValues: OrderForm = {
-  date: "",
+  date: Date.parse(new Date().toString()),
   courier: null,
   sender: {
     address: {

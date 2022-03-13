@@ -1,7 +1,7 @@
 export interface Order {
   id: string;
   statusCode: string;
-  date: string;
+  date: string | number;
   courier: Courier | null;
   sender: TransactionParticipant;
   recipient: TransactionParticipant;
@@ -9,7 +9,7 @@ export interface Order {
 }
 
 export interface OrderForm {
-  date: string;
+  date: string | number;
   courier: Courier | null;
   sender: TransactionParticipant;
   recipient: TransactionParticipant;

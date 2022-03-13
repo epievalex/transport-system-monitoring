@@ -7,12 +7,11 @@ import { connect, ConnectedProps } from "react-redux";
 import * as ordersActions from "store/orders/actions";
 import { RootState } from "store";
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
-import DatePicker from "@mui/lab/DatePicker";
+import DateTimePicker from "@mui/lab/DateTimePicker";
 import { initialValues } from "common/data/orders/form";
 import styles from "./OrderForm.module.css";
 import { Courier, Order, OrderForm } from "common/models";
 import { executeGeocoding } from "common/data/orders/geo";
-import { format } from "date-fns";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 
@@ -96,11 +95,11 @@ const OrderDetails: React.FC<Props> = ({ order, getOrderDetails, updateOrder, co
         />
 
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DatePicker
+          <DateTimePicker
             label="Дата"
             value={values.date}
-            onChange={(value) => changeFormField({ date: format(new Date(value as string), "dd-MM-yyyy") })}
-            renderInput={(params) => <TextField className={styles["input"]} {...params} error={false} />}
+            onChange={(value) => changeFormField({ date: value ? Date.parse(value as string) : "" })}
+            renderInput={(params) => <TextField className={styles["input"]} {...params} />}
           />
         </LocalizationProvider>
 

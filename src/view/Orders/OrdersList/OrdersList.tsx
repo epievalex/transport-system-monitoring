@@ -10,6 +10,7 @@ import styles from "./OrdersList.module.css";
 import { statusCodes } from "common/data/orders/statuses";
 import { columns } from "./data";
 import { ORDER_CREATE } from "routes/orders";
+import { format } from "date-fns/esm";
 
 interface PropsFromRedux {
   items: Order[];
@@ -27,18 +28,20 @@ const OrdersList: React.FC<Props> = ({ items }) => {
     <div className={styles["grid-table"]}>
       <div className={styles["table-row"]}>
         {columns.map((item) => (
-          <div className={styles["table-cell"]}>{item}</div>
+          <div key={item} className={styles["table-cell"]}>
+            {item}
+          </div>
         ))}
       </div>
       {items.map((item) => {
         return (
-          <React.Fragment>
-            <div className={styles["table-row"]} key={item.id} onClick={() => onRowClick(item.id)}>
+          <React.Fragment key={item.id}>
+            <div className={styles["table-row"]} onClick={() => onRowClick(item.id)}>
               <div className={styles["table-cell"]}>
                 <span>{statusCodes[item.statusCode as keyof typeof statusCodes]}</span>
               </div>
               <div className={styles["table-cell"]}>
-                <span>{item.date}</span>
+                <span>{format(new Date(item.date), "dd-MM-yyyy mm:HH a")}</span>
               </div>
               <div className={styles["table-cell"]}>
                 <span>{item.courier?.fullName || "Не назначен"}</span>

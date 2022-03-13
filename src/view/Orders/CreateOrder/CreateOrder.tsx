@@ -12,7 +12,6 @@ import { initialValues } from "common/data/orders/form";
 import styles from "./CreateOrder.module.css";
 import { OrderForm } from "common/models";
 import { executeGeocoding } from "common/data/orders/geo";
-import { format } from "date-fns";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { Overlay } from "common/components/Overlay";
@@ -31,8 +30,11 @@ const CreateOrder: React.FC<Props> = ({ createOrder, cars }) => {
   const [isCourierFound, setIsCourierFound] = useState(false);
   const [areValuesChanged, setAreValuesChanged] = useState(false);
   function changeFormField<K extends keyof typeof values>(data: Pick<typeof values, K>) {
+    console.log(data, "data");
     setValues({ ...values, ...data });
   }
+
+  console.log(values, "values");
 
   useEffect(() => {
     setAreValuesChanged(!_.isEqual(initialValues, values));
@@ -112,8 +114,11 @@ const CreateOrder: React.FC<Props> = ({ createOrder, cars }) => {
           <DateTimePicker
             label="Дата"
             value={values.date}
-            onChange={(value) => changeFormField({ date: format(new Date(value as string), "dd-MM-yyyy") })}
-            renderInput={(params) => <TextField className={styles["input"]} {...params} error={false} />}
+            onChange={(value) => changeFormField({ date: value || "" })}
+            renderInput={(params) => {
+              console.log(params, "params");
+              return <TextField className={styles["input"]} {...params} />;
+            }}
           />
         </LocalizationProvider>
 
