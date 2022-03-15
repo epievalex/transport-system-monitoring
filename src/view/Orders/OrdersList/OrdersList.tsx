@@ -41,7 +41,7 @@ const OrdersList: React.FC<Props> = ({ items }) => {
                 <span>{statusCodes[item.statusCode as keyof typeof statusCodes]}</span>
               </div>
               <div className={styles["table-cell"]}>
-                <span>{format(new Date(item.date), "dd-MM-yyyy mm:HH a")}</span>
+                <span>{format(new Date(item.date), "dd-MM-yyyy HH:mm")}</span>
               </div>
               <div className={styles["table-cell"]}>
                 <span>{item.courier?.fullName || "Не назначен"}</span>

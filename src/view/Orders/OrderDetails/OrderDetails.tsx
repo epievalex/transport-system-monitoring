@@ -98,6 +98,7 @@ const OrderDetails: React.FC<Props> = ({ order, getOrderDetails, updateOrder, co
           <DateTimePicker
             label="Дата"
             value={values.date}
+            ampm={false}
             onChange={(value) => changeFormField({ date: value ? Date.parse(value as string) : "" })}
             renderInput={(params) => <TextField className={styles["input"]} {...params} />}
           />

@@ -114,6 +114,7 @@ const CreateOrder: React.FC<Props> = ({ createOrder, cars }) => {
           <DateTimePicker
             label="Дата"
             value={values.date}
+            ampm={false}
             onChange={(value) => changeFormField({ date: value || "" })}
             renderInput={(params) => {
               console.log(params, "params");
